@@ -5,8 +5,11 @@ from langchain_openai import ChatOpenAI
 from langgraph.graph.message import add_messages
 from dotenv import load_dotenv
 import os
-from langgraph.checkpoint.memory import MemorySaver  #this save  and update the state after every conversation complted and give total conversion to the model in next invoke with query and store in RAM
-
+from langgraph.checkpoint.memory import MemorySaver  
+"""
+MemoryServer store the "state" and reuses it when next invoke is called it addes to the "state" and reuses it.
+And it is stored in RAM.
+"""
 
 
 """BaseMessage is the parent class for all conversation messages
@@ -66,5 +69,6 @@ if __name__ == "__main__":
     print("THANK-YOU")
 
 """
-workflow.get_state(config=config) you will get all the conversations
+workflow.get_state(config=config) you will  return the final state of the "state"
+workflow.get_state_histroy(config) it will give full history
 """
