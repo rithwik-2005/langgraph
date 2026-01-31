@@ -46,13 +46,19 @@ workflow = graph.compile()
 # RUN
 
 if __name__ == "__main__":
-    human_message = input("Please ask the question to the chat model:\n")
 
-    result = workflow.invoke(
+    while True:
+
+        human_message = input("Please ask the question to the chat model:\n")
+        if human_message.strip().lower() in ["exit","quit","bye"]:
+            break
+        result = workflow.invoke(
         {
             "messages": [HumanMessage(content=human_message)]
         }
-    )
+        )
+        print("\n=== AI RESPONSE ===\n")
+        print(result["messages"][-1].content)
+    print("THANK-YOU")
 
-    print("\n=== AI RESPONSE ===\n")
-    print(result["messages"][-1].content)
+    
